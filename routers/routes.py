@@ -2,8 +2,6 @@
 from flask import Blueprint, render_template, request, redirect
 from mysql.connector import connect
 
-from app import cur, mydb
-
 router = Blueprint('router', __name__)
 
 # connecting to the database
