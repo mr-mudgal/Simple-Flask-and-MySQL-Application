@@ -2,7 +2,6 @@
 with routes to every HTML page"""
 
 # importing all the necessary modules
-import mysql.connector
 from flask import Flask
 
 from routers.routes import router
@@ -11,11 +10,6 @@ from routers.routes import router
 app = Flask(__name__)
 app.register_blueprint(router)
 
-# connecting to the database
-mydb = mysql.connector.connect(host="localhost", user="root", password="MySQL@1", database='users')
-cur = mydb.cursor()
-cur.execute('user users')
-
 
 @app.errorhandler(404)
 def not_found(e):
@@ -23,4 +17,6 @@ def not_found(e):
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	# app.run(debug=True)
+	app.run()
+	
