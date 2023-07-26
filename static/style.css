@@ -1,0 +1,49 @@
+h1 {
+    text-align: center;
+    margin-top: 13%;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-color: blue;
+}
+
+table tr.table_header {
+    font-weight: bold;
+    text-align: center;
+}
+
+input {
+    margin-top: 20px;
+}
+
+form {
+    text-align: center;
+    background: lightblue;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+form input {
+    border-radius: 7px;
+    border: 2px solid black;
+    width: 70%
+}
+
+form input#add_user {
+    height: 35px;
+    font-weight: bold;
+    background: lightgreen;
+}
+
+form label {
+    font-weight: bold;
+}
+
+

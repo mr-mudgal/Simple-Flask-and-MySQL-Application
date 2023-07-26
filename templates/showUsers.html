@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+    {% block title %}
+        Show Users
+    {% endblock %}
+
+    {% block body %}
+    <div id="show_users">
+
+        {% if users.__class__.__name__ == 'list' %}
+            <h1>All Users</h1>
+            <table border="2" cellpadding="5" cellspacing="3">
+                <tr class="table_header">
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td>EMAIL</td>
+                    <td>ROLE</td>
+                </tr>
+            {% for user in users %}
+                <tr>
+                {% for data in user %}
+                    <td>{{data}}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+
+        {% else %}
+            <h1>User</h1>
+            <table border="2" cellspacing="3" cellpadding="5">
+                <tr class="table_header">
+                    <td>ID</td>
+                    <td>NAME</td>
+                    <td>EMAIL</td>
+                    <td>ROLE</td>
+                </tr>
+                <tr>
+                    <td>{{users[0]}}</td>
+                    <td>{{users[1]}}</td>
+                    <td>{{users[2]}}</td>
+                    <td>{{users[3]}}</td>
+                </tr>
+            </table>
+        {% endif %}
+    </div>
+    {% endblock %}
