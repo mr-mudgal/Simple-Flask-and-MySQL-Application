@@ -27,7 +27,8 @@ finally:
 		try:
 			# create a table with columns and their properties
 			cur.execute(
-				'CREATE TABLE users(''id INT AUTO_INCREMENT PRIMARY KEY,''name VARCHAR(50),''email VARCHAR(50), ''role VARCHAR(20))')
+				'CREATE TABLE users(''id INT AUTO_INCREMENT PRIMARY KEY,''name VARCHAR(50) NOT NULL,''email VARCHAR('
+				'50) NOT NULL, ''role VARCHAR(20) NOT NULL)')
 		except Exception as e:
 			print(e)
 		finally:

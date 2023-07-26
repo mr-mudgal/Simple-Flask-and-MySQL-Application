@@ -1,9 +1,15 @@
 # importing all the required module and variables
 from flask import Blueprint, render_template, request, redirect
+from mysql.connector import connect
 
 from app import cur, mydb
 
 router = Blueprint('router', __name__)
+
+# connecting to the database
+mydb = connect(host="localhost", user="root", password="MySQL@1", database='users')
+cur = mydb.cursor()
+cur.execute('use users')
 
 
 @router.route('/hello')
