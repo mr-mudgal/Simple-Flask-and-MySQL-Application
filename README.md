@@ -37,6 +37,20 @@ users database have a users table with four fields, they are as follows with the
 8. On any wrong url (like: http://127.0.0.1:5000/asdhfjkads), it would take you to the webpage, showing **'Page Not Found'** and a button which would redirect you to the homepage of the application, ['/hello'](http://127.0.0.1:5000/hello).
 9. On any database operation error, it would display the error in the browser.
 
+## Snippets from the Running Application
+Home Page!
+<img width="1352" src="https://github.com/user-attachments/assets/7ef6f0ce-530c-4602-b0f0-f9bb8cf3d125" />
+
+All Users Page!
+<img width="1352" src="https://github.com/user-attachments/assets/2b7141a1-f58a-4aea-9904-83b82b9341f0" />
+
+One User Details Page!
+<img width="1352" src="https://github.com/user-attachments/assets/92b00572-f06c-4969-989a-aac7dc3e2f9b" />
+
+404 Error Page!
+<img width="1352" src="https://github.com/user-attachments/assets/235e76a4-616b-49d0-ab83-bdc610992699" />
+
+
 ## How to contribute
 1. To contribute in the project, first raise an issue describing why you want to contribute to the project or get a pull request or want to fork the project. 
 2. On approval you need to first FORK the project, and then create new branch and start contributing what you wanted.
