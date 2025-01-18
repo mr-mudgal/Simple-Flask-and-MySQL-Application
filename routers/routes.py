@@ -1,81 +1,86 @@
 # importing all the required module and variables
 from flask import Blueprint, render_template, request, redirect
-from mysql.connector import connect
+from db_create import cur
 
-router = Blueprint('router', __name__)
+router = Blueprint("router", __name__)
 
 # connecting to the database
-mydb = connect(host="localhost", user="root", password="MySQL@1", database='users')
-cur = mydb.cursor()
-cur.execute('use users')
+cur.execute("use users")
 
 
-@router.route('/hello')
+@router.route("/hello")
 def hello():
-	"""This function simply return 'Hello, World!' string."""
-	
-	return 'Hello, World!'
+    """This function simply return 'Hello, World!' string."""
+
+    return """Hello, User!<br>
+See All Users: <a href="/users">here</a><br>
+Add New User: <a href="/new_user">here</a><br>
+See One User: <a href="/users/1">here</a> [By Default User 1 one will be displayed, but you can change user id iavailable from See All Users to see individual details.]"""
 
 
-@router.route('/users')
+@router.route("/users")
 def showusers():
-	"""This function show all the users saved in the database in the form of HTML table."""
-	
-	try:
-		# execute the query with the cursor created in the app.py file
-		cur.execute('SELECT * FROM users')
-		data = cur.fetchall()
+    """This function show all the users saved in the database in the form of HTML table."""
 
-		# render the html template with the data passed to it
-		return render_template('showUsers.html', users=data)
+    try:
+        # execute the query with the cursor created in the app.py file
+        cur.execute("SELECT * FROM users")
+        data = cur.fetchall()
 
-	# return error in case of any failure
-	except Exception as e:
-		return str(e)
+        # render the html template with the data passed to it
+        return render_template("showUsers.html", users=data)
+
+    # return error in case of any failure
+    except Exception as e:
+        return str(e)
 
 
-@router.route('/new_user', methods=['GET', 'POST'])
+@router.route("/new_user", methods=["GET", "POST"])
 def insertuser():
-	"""This function insert the user when a POST request is received from the browser, else on the GET request, 
- it renders the webpage with form to be filled in order to insert the user in the database."""
-	
-	# if it's a post request, then execute this code block
-	if request.method == 'POST':
-		# get data from the input fields of the form for saving the details in database
-		name = request.form['name']
-		email = request.form['email']
-		role = request.form['role']
+    """This function insert the user when a POST request is received from the browser, else on the GET request,
+    it renders the webpage with form to be filled in order to insert the user in the database.
+    """
 
-		try:
-			# execute the query with the cursor created in the app.py file
-			cur.execute('INSERT INTO users (name, email, role) VALUES (%s, %s, %s)', (name, email, role))
-			mydb.commit()
+    # if it's a post request, then execute this code block
+    if request.method == "POST":
+        # get data from the input fields of the form for saving the details in database
+        name = request.form["name"]
+        email = request.form["email"]
+        role = request.form["role"]
 
-			# redirect the user to another webpage to show the details
-			return redirect('/users')
+        try:
+            # execute the query with the cursor created in the app.py file
+            cur.execute(
+                "INSERT INTO users (name, email, role) VALUES (%s, %s, %s)",
+                (name, email, role),
+            )
+            mydb.commit()
 
-		# return error in case of any failure
-		except Exception as e:
-			return str(e)
+            # redirect the user to another webpage to show the details
+            return redirect("/users")
 
-	# if it's a get request, then return the form filling webpage
-	else:
-		return render_template('insertUser.html')
+        # return error in case of any failure
+        except Exception as e:
+            return str(e)
+
+    # if it's a get request, then return the form filling webpage
+    else:
+        return render_template("insertUser.html")
 
 
-@router.route('/users/<userid>')
+@router.route("/users/<userid>")
 def showuser(userid):
-	"""This function fetch only one user by matching their id passed from url into database and display the user 
- in the webpage."""
+    """This function fetch only one user by matching their id passed from url into database and display the user
+    in the webpage."""
 
-	try:
-		# execute the query with the cursor created in the app.py file
-		cur.execute(f'SELECT * FROM users WHERE id={userid}')
-		data = cur.fetchone()
+    try:
+        # execute the query with the cursor created in the app.py file
+        cur.execute(f"SELECT * FROM users WHERE id={userid}")
+        data = cur.fetchone()
 
-		# render the html template with the data passed to it
-		return render_template('showUsers.html', users=data)
-	
-	# return error in case of any failure
-	except Exception as e:
-		return str(e)
+        # render the html template with the data passed to it
+        return render_template("showUsers.html", users=data)
+
+    # return error in case of any failure
+    except Exception as e:
+        return str(e)

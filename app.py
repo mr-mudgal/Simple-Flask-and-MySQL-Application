@@ -13,10 +13,8 @@ app.register_blueprint(router)
 
 @app.errorhandler(404)
 def not_found(e):
-	return '<h1>PAGE NOT FOUND, <button><a href="/hello">Click to go to Home Page</a></button></h1>'
+    return '<h1>PAGE NOT FOUND, <button><a href="/hello">Click to go to Home Page</a></button></h1>'
 
 
 if __name__ == "__main__":
-	# app.run(debug=True)
-	app.run()
-	
+    app.run()
